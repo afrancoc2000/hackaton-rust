@@ -1,5 +1,6 @@
-use actix_web::HttpResponse;
+use actix_web::{get, HttpResponse};
 
-pub async fn health_controller() -> HttpResponse {
+#[get("/healthz")]
+async fn health_controller() -> HttpResponse {
     HttpResponse::Ok().body("Up")
 }
