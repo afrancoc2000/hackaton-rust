@@ -5,6 +5,7 @@ use controllers::health::health_controller;
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
+    println!("Servidor Rust ejecutando");
     HttpServer::new(move || {
         App::new()
             .service(health_controller)
