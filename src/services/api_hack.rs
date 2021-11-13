@@ -1,6 +1,7 @@
 use cached::proc_macro::cached;
 use reqwest;
 use serde_json;
+use std::env;
 
 #[path = "../models/response.rs"]
 mod response;
@@ -15,8 +16,10 @@ pub fn api_hack_service(number: String) -> Result<String, reqwest::Error> {
 }
 
 fn get_resp(number: String) -> Result<response::Response, reqwest::Error> {
+    let hostname = env::var("SVC_API_HOSTNAME").expect("No puede leer la env SVC_API_HOSTNAME");
+    let port = env::var("SVC_API_PORT").expect("No puede leer la env SVC_API_PORT");
     let resp =
-        reqwest::blocking::get(format!("http://api-3.hack.local/?number={}", number))?.json();
+        reqwest::blocking::get(format!("http://{}:{}/?number={}", hostname, port, number))?.json();
 
     match resp {
         Ok(js) => Ok(js),
