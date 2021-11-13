@@ -6,7 +6,7 @@ use std::env;
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
-    println!("Servidor Rust ejecutando");
+    println!("Servidor Rust ejecutando en 5000");
     let hostname = env::var("SVC_API_HOSTNAME")
         .expect("No puede leer la variable de entorno SVC_API_HOSTNAME");
     let port = env::var("SVC_API_PORT").expect("No puede leer la variable de entorno SVC_API_PORT");
