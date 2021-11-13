@@ -7,7 +7,7 @@ RUN apk add musl-dev && \
 WORKDIR /usr/src/hackaton-rust
 RUN USER=root cargo init
 COPY Cargo.toml .
-COPY src src
+COPY src .
 RUN cargo build --release
 
 #FROM debian:stretch-slim
