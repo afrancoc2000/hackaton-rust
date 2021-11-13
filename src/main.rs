@@ -8,6 +8,7 @@ use std::env;
 pub async fn main() -> std::io::Result<()> {
     let hostname = env::var("SVC_API_HOSTNAME").unwrap_or("127.0.0.1".to_owned());
     let port = env::var("SVC_API_PORT").unwrap_or("5000".to_owned());
+    println!("Server up in {}", port);
     HttpServer::new(move || {
         App::new()
             .service(health_controller)
