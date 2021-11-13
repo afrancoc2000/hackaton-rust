@@ -6,7 +6,7 @@ pub type Method = String;
 pub type Url = String;
 pub type Data = String;
 pub type Date = String;
-pub type ValiditySeconds = String;
+pub type ValiditySeconds = u32;
 pub type Token = String;
 
 #[derive(Debug, Deserialize, Serialize)]
