@@ -1,5 +1,7 @@
 FROM rust:1.55.0-alpine3.13 as builder
 
+EXPOSE 5000
+
 RUN apk add libressl-dev
 RUN apk add musl-dev pkgconfig openssl && \
     rm -rf /var/lib/apt/lists/* && \
