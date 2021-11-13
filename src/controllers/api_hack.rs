@@ -14,7 +14,7 @@ struct Info {
 async fn api_hack_controller(info: web::Query<Info>) -> HttpResponse {
     let number = &info.number;
     match api_hack::api_hack_service(&number) {
-        Ok(js) => HttpResponse::Ok().body(serde_json::to_string(&js).unwrap()),
+        Ok(js) => HttpResponse::Ok().content_type("application/json").body(serde_json::to_string(&js).unwrap()),
         Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
     }
 }
