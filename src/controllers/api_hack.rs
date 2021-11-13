@@ -1,17 +1,21 @@
 use actix_web::{get, HttpRequest, HttpResponse};
+use serde_json;
 
 #[path = "../services/api_hack.rs"]
 mod api_hack;
 
 #[get("/")]
 async fn api_hack_controller(request: HttpRequest) -> HttpResponse {
-    request.match_info().get("number").map_or(
-        HttpResponse::BadRequest().body("Missing parameter"),
-        |number| match api_hack::api_hack_service(number) {
-            Ok(json) => HttpResponse::Ok().body(json),
-            _ => HttpResponse::InternalServerError().finish(),
-        },
-    )
+    let number = request.match_info().get("number");
+    
+    if number.is_none(){
+        HttpResponse::InternalServerError().finish()
+    }else{
 
-    //TODO
+        match api_hack::api_hack_service(number.unwrap()){
+            Ok(js) => 
+            HttpResponse::Ok().body(serde_json::to_string(&js).unwrap()),
+            Err(e) => HttpResponse::InternalServerError().body(e.to_string())
+        }
+    }
 }
