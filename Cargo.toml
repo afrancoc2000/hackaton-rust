@@ -6,3 +6,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 actix-web = "3"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+anyhow = "1.0.38"
+hyper = "0.14"
+serde = "1.0.123"
+serde_derive = "1.0.123"
