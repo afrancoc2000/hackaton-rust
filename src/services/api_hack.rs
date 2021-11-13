@@ -16,8 +16,9 @@ pub fn api_hack_service(number: String) -> Result<String, reqwest::Error> {
 }
 
 fn get_resp(number: String) -> Result<response::Response, reqwest::Error> {
-    let hostname = env::var("SVC_API_HOSTNAME").expect("No puede leer la env SVC_API_HOSTNAME");
-    let port = env::var("SVC_API_PORT").expect("No puede leer la env SVC_API_PORT");
+    let hostname = env::var("SVC_API_HOSTNAME")
+        .expect("No puede leer la variable de entorno SVC_API_HOSTNAME");
+    let port = env::var("SVC_API_PORT").expect("No puede leer la variable de entorno SVC_API_PORT");
     let resp =
         reqwest::blocking::get(format!("http://{}:{}/?number={}", hostname, port, number))?.json();
 
